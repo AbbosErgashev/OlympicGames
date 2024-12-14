@@ -1,4 +1,4 @@
-﻿namespace OlympicGames.Model
+﻿namespace OlympicGames.Model.Entity
 {
     public class OlympicEvent
     {

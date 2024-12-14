@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OlympicGames.Model
+namespace OlympicGames.Model.Entity
 {
     public class Year
     {

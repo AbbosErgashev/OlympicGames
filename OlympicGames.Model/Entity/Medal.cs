@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OlympicGames.Model
+namespace OlympicGames.Model.Entity
 {
-    public class Country
+    public class Medal
     {
         public int Id { get; set; }
-        [MaxLength(100, ErrorMessage = "Name must be 100 characters or less")]
+        [MaxLength(50, ErrorMessage = "Name must be 50 characters or less")]
         public required string Name { get; set; }
     }
 }
