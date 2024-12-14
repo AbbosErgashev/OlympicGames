@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OlympicGames.Model;
+using OlympicGames.Model.Entity;
 
 namespace OlympicGames.Infrastructure.Data
 {
