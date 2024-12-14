@@ -2,12 +2,10 @@
 
 namespace OlympicGames.Model
 {
-    public class Event
+    public class Medal
     {
         public int Id { get; set; }
-        [MaxLength(50)]
+        [MaxLength(50, ErrorMessage = "Name must be 50 characters or less")]
         public required string Name { get; set; }
-        public int CountryId { get; set; }
-        public List<Country> Country { get; set; }
     }
 }
