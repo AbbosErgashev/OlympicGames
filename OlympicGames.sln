@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlympicGames.Model", "Olymp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C631977A-B1F0-4608-AE90-E878445BBC54}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OlympicGames.Infrastructure", "OlympicGames.Infrastructure\OlympicGames.Infrastructure.csproj", "{3E7F3E9A-95DD-479B-8584-D2AF342E01BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{12AAD72F-2AE3-4A8C-847F-F50CDE383F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{12AAD72F-2AE3-4A8C-847F-F50CDE383F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{12AAD72F-2AE3-4A8C-847F-F50CDE383F71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E7F3E9A-95DD-479B-8584-D2AF342E01BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E7F3E9A-95DD-479B-8584-D2AF342E01BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E7F3E9A-95DD-479B-8584-D2AF342E01BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E7F3E9A-95DD-479B-8584-D2AF342E01BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,5 +36,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{95636E90-4FFE-4A57-A4F6-2E35F0312B87} = {C631977A-B1F0-4608-AE90-E878445BBC54}
 		{12AAD72F-2AE3-4A8C-847F-F50CDE383F71} = {C631977A-B1F0-4608-AE90-E878445BBC54}
+		{3E7F3E9A-95DD-479B-8584-D2AF342E01BB} = {C631977A-B1F0-4608-AE90-E878445BBC54}
 	EndGlobalSection
 EndGlobal
