@@ -13,7 +13,7 @@ namespace OlympicGames.Model.Entity
         public int CountryId { get; set; }
         public int GameId { get; set; }
         public required string ProfileImage { get; set; }
-        public List<Country> Country { get; set; }
-        public List<Game> Game { get; set; }
+        public Country Country { get; set; }
+        public Game Game { get; set; }
     }
 }

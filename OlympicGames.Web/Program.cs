@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using OlympicGames.Infrastructure.Data;
+using OlympicGames.Infrastructure.IRepositories;
+using OlympicGames.Infrastructure.IRepositories.Base;
+using OlympicGames.Infrastructure.Repositories;
+using OlympicGames.Infrastructure.Repositories.Base;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +13,17 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DatabaseConnection"))
     .EnableSensitiveDataLogging();
 });
+
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+builder.Services.AddTransient<IAreaRepository, AreaRepository>();
+builder.Services.AddScoped<IAthleteRepository, AthleteRepository>();
+builder.Services.AddTransient<ICompetitionRepository, CompetitionRepository>();
+builder.Services.AddTransient<ICountryRepository, CountryRepostiroy>();
+builder.Services.AddTransient<IGameRepository, GameRepository>();
+builder.Services.AddTransient<IMedalRepository, MedalRepository>();
+builder.Services.AddTransient<IOlympicEventRepository, OlympicEventRepository>();
+builder.Services.AddTransient<IYearRepository, YearRepository>();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 

@@ -11,8 +11,8 @@ namespace OlympicGames.Infrastructure.ViewModels
         public int CountryId { get; set; }
         public int GameId { get; set; }
         public string ProfileImage { get; set; }
-        public List<Country> Country { get; set; }
-        public List<Game> Game { get; set; }
+        public Country Country { get; set; }
+        public Game Game { get; set; }
 
         public AthleteViewModel() { }
 

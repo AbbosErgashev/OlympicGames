@@ -68,5 +68,39 @@ namespace OlympicGames.Infrastructure.Repositories
             var vmList = modelList.Select(list => new AthleteViewModel(list)).ToList();
             return vmList;
         }
+
+        PagedResult<AthleteViewModel> IAthleteRepository.GetAll(int pageNumber, int pageSize)
+        {
+            var vm = new AthleteViewModel();
+            int totalCount;
+            List<AthleteViewModel> vmList = new List<AthleteViewModel>();
+            try
+            {
+                int ExcludeRecords = (pageSize - pageNumber) - pageSize;
+
+                var modelList = _unitOfWork.GenericRepository<Athlete>().GetAll(includeProperties: "Country")
+                    .Skip(ExcludeRecords).Take(pageSize).ToList();
+
+                var modelListTwo = _unitOfWork.GenericRepository<Athlete>().GetAll(includePropertiesTwo: "Game")
+                    .Skip(ExcludeRecords).Take(pageSize).ToList();
+
+                totalCount = _unitOfWork.GenericRepository<Athlete>().GetAll().ToList().Count;
+
+                vmList = ConvertModelToViewModelList(modelList);
+                vmList = ConvertModelToViewModelList(modelListTwo);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            var result = new PagedResult<AthleteViewModel>
+            {
+                Data = vmList,
+                TotalItems = totalCount,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+            return result;
+        }
     }
 }

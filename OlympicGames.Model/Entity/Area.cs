@@ -8,6 +8,6 @@ namespace OlympicGames.Model.Entity
         [MaxLength(250, ErrorMessage = "Name must be 250 characters or less")]
         public required string Name { get; set; }
         public int CountryId { get; set; }
-        public List<Country> Country { get; set; }
+        public Country Country { get; set; }
     }
 }

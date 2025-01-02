@@ -22,7 +22,7 @@ namespace OlympicGames.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("OlympicGames.Model.Area", b =>
+            modelBuilder.Entity("OlympicGames.Model.Entity.Area", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -44,10 +44,12 @@ namespace OlympicGames.Infrastructure.Migrations
 
                     b.HasIndex("CompetitionId");
 
+                    b.HasIndex("CountryId");
+
                     b.ToTable("Areas");
                 });
 
-            modelBuilder.Entity("OlympicGames.Model.Athlete", b =>
+            modelBuilder.Entity("OlympicGames.Model.Entity.Athlete", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -82,10 +84,14 @@ namespace OlympicGames.Infrastructure.Migrations
 
                     b.HasIndex("CompetitionId");
 
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("GameId");
+
                     b.ToTable("Athletes");
                 });
 
-            modelBuilder.Entity("OlympicGames.Model.Competition", b =>
+            modelBuilder.Entity("OlympicGames.Model.Entity.Competition", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -122,19 +128,13 @@ namespace OlympicGames.Infrastructure.Migrations
                     b.ToTable("Competitions");
                 });
 
-            modelBuilder.Entity("OlympicGames.Model.Country", b =>
+            modelBuilder.Entity("OlympicGames.Model.Entity.Country", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("AreaId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("AthleteId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasMaxLength(100)
@@ -145,25 +145,18 @@ namespace OlympicGames.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AreaId");
-
-                    b.HasIndex("AthleteId");
-
                     b.HasIndex("OlympicEventId");
 
                     b.ToTable("Countries");
                 });
 
-            modelBuilder.Entity("OlympicGames.Model.Game", b =>
+            modelBuilder.Entity("OlympicGames.Model.Entity.Game", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("AthleteId")
-                        .HasColumnType("int");
 
                     b.Property<int?>("CompetitionId")
                         .HasColumnType("int");
@@ -174,14 +167,12 @@ namespace OlympicGames.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AthleteId");
-
                     b.HasIndex("CompetitionId");
 
                     b.ToTable("Games");
                 });
 
-            modelBuilder.Entity("OlympicGames.Model.Medal", b =>
+            modelBuilder.Entity("OlympicGames.Model.Entity.Medal", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -203,7 +194,7 @@ namespace OlympicGames.Infrastructure.Migrations
                     b.ToTable("Medals");
                 });
 
-            modelBuilder.Entity("OlympicGames.Model.OlympicEvent", b =>
+            modelBuilder.Entity("OlympicGames.Model.Entity.OlympicEvent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -233,7 +224,7 @@ namespace OlympicGames.Infrastructure.Migrations
                     b.ToTable("OlympicEvents");
                 });
 
-            modelBuilder.Entity("OlympicGames.Model.Year", b =>
+            modelBuilder.Entity("OlympicGames.Model.Entity.Year", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -255,80 +246,80 @@ namespace OlympicGames.Infrastructure.Migrations
                     b.ToTable("Years");
                 });
 
-            modelBuilder.Entity("OlympicGames.Model.Area", b =>
+            modelBuilder.Entity("OlympicGames.Model.Entity.Area", b =>
                 {
-                    b.HasOne("OlympicGames.Model.Competition", null)
+                    b.HasOne("OlympicGames.Model.Entity.Competition", null)
                         .WithMany("Area")
                         .HasForeignKey("CompetitionId");
-                });
 
-            modelBuilder.Entity("OlympicGames.Model.Athlete", b =>
-                {
-                    b.HasOne("OlympicGames.Model.Competition", null)
-                        .WithMany("Athlete")
-                        .HasForeignKey("CompetitionId");
-                });
+                    b.HasOne("OlympicGames.Model.Entity.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("OlympicGames.Model.Country", b =>
-                {
-                    b.HasOne("OlympicGames.Model.Area", null)
-                        .WithMany("Country")
-                        .HasForeignKey("AreaId");
-
-                    b.HasOne("OlympicGames.Model.Athlete", null)
-                        .WithMany("Country")
-                        .HasForeignKey("AthleteId");
-
-                    b.HasOne("OlympicGames.Model.OlympicEvent", null)
-                        .WithMany("Country")
-                        .HasForeignKey("OlympicEventId");
-                });
-
-            modelBuilder.Entity("OlympicGames.Model.Game", b =>
-                {
-                    b.HasOne("OlympicGames.Model.Athlete", null)
-                        .WithMany("Game")
-                        .HasForeignKey("AthleteId");
-
-                    b.HasOne("OlympicGames.Model.Competition", null)
-                        .WithMany("Game")
-                        .HasForeignKey("CompetitionId");
-                });
-
-            modelBuilder.Entity("OlympicGames.Model.Medal", b =>
-                {
-                    b.HasOne("OlympicGames.Model.Competition", null)
-                        .WithMany("Medal")
-                        .HasForeignKey("CompetitionId");
-                });
-
-            modelBuilder.Entity("OlympicGames.Model.OlympicEvent", b =>
-                {
-                    b.HasOne("OlympicGames.Model.Competition", null)
-                        .WithMany("OlympicEvent")
-                        .HasForeignKey("CompetitionId");
-                });
-
-            modelBuilder.Entity("OlympicGames.Model.Year", b =>
-                {
-                    b.HasOne("OlympicGames.Model.OlympicEvent", null)
-                        .WithMany("Year")
-                        .HasForeignKey("OlympicEventId");
-                });
-
-            modelBuilder.Entity("OlympicGames.Model.Area", b =>
-                {
                     b.Navigation("Country");
                 });
 
-            modelBuilder.Entity("OlympicGames.Model.Athlete", b =>
+            modelBuilder.Entity("OlympicGames.Model.Entity.Athlete", b =>
                 {
+                    b.HasOne("OlympicGames.Model.Entity.Competition", null)
+                        .WithMany("Athlete")
+                        .HasForeignKey("CompetitionId");
+
+                    b.HasOne("OlympicGames.Model.Entity.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OlympicGames.Model.Entity.Game", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Country");
 
                     b.Navigation("Game");
                 });
 
-            modelBuilder.Entity("OlympicGames.Model.Competition", b =>
+            modelBuilder.Entity("OlympicGames.Model.Entity.Country", b =>
+                {
+                    b.HasOne("OlympicGames.Model.Entity.OlympicEvent", null)
+                        .WithMany("Country")
+                        .HasForeignKey("OlympicEventId");
+                });
+
+            modelBuilder.Entity("OlympicGames.Model.Entity.Game", b =>
+                {
+                    b.HasOne("OlympicGames.Model.Entity.Competition", null)
+                        .WithMany("Game")
+                        .HasForeignKey("CompetitionId");
+                });
+
+            modelBuilder.Entity("OlympicGames.Model.Entity.Medal", b =>
+                {
+                    b.HasOne("OlympicGames.Model.Entity.Competition", null)
+                        .WithMany("Medal")
+                        .HasForeignKey("CompetitionId");
+                });
+
+            modelBuilder.Entity("OlympicGames.Model.Entity.OlympicEvent", b =>
+                {
+                    b.HasOne("OlympicGames.Model.Entity.Competition", null)
+                        .WithMany("OlympicEvent")
+                        .HasForeignKey("CompetitionId");
+                });
+
+            modelBuilder.Entity("OlympicGames.Model.Entity.Year", b =>
+                {
+                    b.HasOne("OlympicGames.Model.Entity.OlympicEvent", null)
+                        .WithMany("Year")
+                        .HasForeignKey("OlympicEventId");
+                });
+
+            modelBuilder.Entity("OlympicGames.Model.Entity.Competition", b =>
                 {
                     b.Navigation("Area");
 
@@ -341,7 +332,7 @@ namespace OlympicGames.Infrastructure.Migrations
                     b.Navigation("OlympicEvent");
                 });
 
-            modelBuilder.Entity("OlympicGames.Model.OlympicEvent", b =>
+            modelBuilder.Entity("OlympicGames.Model.Entity.OlympicEvent", b =>
                 {
                     b.Navigation("Country");
 

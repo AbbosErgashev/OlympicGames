@@ -1,0 +1,99 @@
+﻿@using OlympicGames.Model.Entity
+@model PagedResult<OlympicGames.Infrastructure.ViewModels.AreaViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Areas</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<!-- Table to Display Areas -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">Country</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Data)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Country.Name)</td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-sm" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-info btn-sm" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="row">
+    <div class="col-lg-4 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="icon-box">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                Athlete Overview
+            </div>
+            <div class="card-body">
+                <p>Quick overview of athlete statistics and performance.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="icon-box">
+                    <i class="bi bi-geo-alt"></i>
+                </div>
+                Area Coverage
+            </div>
+            <div class="card-body">
+                <p>Detailed data about the areas participating in the Olympic Games.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="icon-box">
+                    <i class="bi bi-flag"></i>
+                </div>
+                Country Statistics
+            </div>
+            <div class="card-body">
+                <p>Information about the countries and their Olympic performances.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Pagination Controls -->
+<nav>
+    <ul class="pagination justify-content-center">
+        <cs-pager cs-paging-pagesize="@Model.PageSize"
+                  cs-paging-pagenumber="@Model.PageNumber"
+                  cs-paging-totalitems="@Model.TotalItems"
+                  cs-pagenumber-param="pageNumber"
+                  asp-controller="Contacts"
+                  asp-action="Index"
+                  cs-pager-li-current-class="page-item active"
+                  cs-pager-li-other-class="page-item"
+                  cs-pager-li-non-active-class="page-item disabled"
+                  cs-pager-link-current-class="page-link"
+                  cs-pager-link-other-class="page-link">
+        </cs-pager>
+    </ul>
+</nav>
