@@ -29,6 +29,36 @@ namespace OlympicGames.Infrastructure.Repositories
             _unitOfWork.Save();
         }
 
+        public PagedResult<AreaViewModel> GetAll(int pageNumber, int pageSize)
+        {
+            var vm = new AreaViewModel();
+            int totalCount;
+            List<AreaViewModel> vmList = new List<AreaViewModel>();
+            try
+            {
+                int ExcludeRecords = (pageSize - pageNumber) - pageSize;
+
+                var modelList = _unitOfWork.GenericRepository<Area>().GetAll(includeProperties: "Country")
+                    .Skip(ExcludeRecords).Take(pageSize).ToList();
+
+                totalCount = _unitOfWork.GenericRepository<Area>().GetAll().ToList().Count;
+
+                vmList = ConvertModelToViewModelList(modelList);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            var result = new PagedResult<AreaViewModel>
+            {
+                Data = vmList,
+                TotalItems = totalCount,
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+            return result;
+        }
+
         public IEnumerable<AreaViewModel> GetAllAreaList()
         {
             var getAll = _unitOfWork.GenericRepository<Area>().GetAll().ToList();

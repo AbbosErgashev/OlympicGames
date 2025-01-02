@@ -7,7 +7,8 @@ namespace OlympicGames.Infrastructure.IRepositories.Base
         IEnumerable<T> GetAll(
            Expression<Func<T, bool>> filter = null,
            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-           string includeProperties = "");
+           string includeProperties = "",
+           string includePropertiesTwo = "");
 
         T GetById(object id);
         Task<T> GetByIdAsync(object id);

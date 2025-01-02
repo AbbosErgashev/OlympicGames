@@ -65,13 +65,19 @@ namespace OlympicGames.Infrastructure.Repositories.Base
 
         public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null,
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-            string includeProperties = "")
+            string includeProperties = "",
+            string includePropertiesTwo = "")
         {
             IQueryable<T> query = dbSet;
             if (filter is not null)
                 query = query.Where(filter);
 
             foreach (var includeProperty in includeProperties.Split(
+                new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+            foreach (var includeProperty in includePropertiesTwo.Split(
                 new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 query = query.Include(includeProperty);

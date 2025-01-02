@@ -2,7 +2,7 @@
 
 namespace OlympicGames.Infrastructure.ViewModels
 {
-    public class OlympicEventViewModdel
+    public class OlympicEventViewModel
     {
         public int Id { get; set; }
         public int YearId { get; set; }
@@ -12,9 +12,9 @@ namespace OlympicGames.Infrastructure.ViewModels
         public List<Year> Year { get; set; }
         public List<Country> Country { get; set; }
 
-        public OlympicEventViewModdel() { }
+        public OlympicEventViewModel() { }
 
-        public OlympicEventViewModdel(OlympicEvent model)
+        public OlympicEventViewModel(OlympicEvent model)
         {
             Id = model.Id;
             YearId = model.YearId;
@@ -25,7 +25,7 @@ namespace OlympicGames.Infrastructure.ViewModels
             Country = model.Country;
         }
 
-        public OlympicEvent ConvertViewModel(OlympicEvent model)
+        public OlympicEvent ConvertViewModel(OlympicEventViewModel model)
         {
             return new OlympicEvent
             {

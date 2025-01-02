@@ -1,0 +1,128 @@
+﻿@model OlympicGames.Infrastructure.ViewModels.AthleteViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 class="page-header">Athlete Details</h1>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h4 class="text-muted">View Athlete Information</h4>
+        <hr />
+        <dl class="row">
+
+            <!-- Athlete ID -->
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Id)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Id)
+            </dd>
+
+            <!-- First Name -->
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+
+            <!-- Last Name -->
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+
+            <!-- Date of Birth -->
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.DOB)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.DOB)
+            </dd>
+
+            <!-- Country -->
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Country.Name)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Country.Name)
+            </dd>
+
+            <!-- Game -->
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Game.Name)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Game.Name)
+            </dd>
+
+            <!-- Profile Image -->
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.ProfileImage)
+            </dt>
+            <dd class="col-sm-9">
+                @if (string.IsNullOrEmpty(Model.ProfileImage))
+                {
+                    <img style="max-width: 200px; height: auto;" src="/assets/images/NoImage.png" alt="No Image Available" />
+                }
+                else
+                {
+                    <img style="max-width: 200px; height: auto;" src="/assets/images/@Model.ProfileImage" alt="Profile Image" />
+                }
+            </dd>
+
+        </dl>
+        </dl>
+
+        <!-- Action Links -->
+        <div class="d-flex justify-content-between">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+            <a asp-action="Index" class="btn btn-link">Back to List</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-4 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="icon-box">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                Athlete Overview
+            </div>
+            <div class="card-body">
+                <p>Quick overview of athlete statistics and performance.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="icon-box">
+                    <i class="bi bi-geo-alt"></i>
+                </div>
+                Area Coverage
+            </div>
+            <div class="card-body">
+                <p>Detailed data about the areas participating in the Olympic Games.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="icon-box">
+                    <i class="bi bi-flag"></i>
+                </div>
+                Country Statistics
+            </div>
+            <div class="card-body">
+                <p>Information about the countries and their Olympic performances.</p>
+            </div>
+        </div>
+    </div>
+</div>

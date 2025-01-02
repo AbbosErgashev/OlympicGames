@@ -3,45 +3,144 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - OlympicGames.Web</title>
+    <title>@ViewData["Title"] - Olympic Games</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/OlympicGames.Web.styles.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #f7f9fc;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            background-color: #007BFF;
+            border-radius: 0;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-size: 1.6em;
+        }
+
+        .nav-link {
+            color: #ffffff !important;
+            font-weight: 350;
+        }
+
+            .nav-link:hover {
+                color: #ffcc00 !important;
+            }
+
+        .navbar-toggler-icon {
+            background-color: white;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 5px 0;
+            text-align: center;
+        }
+
+            footer a {
+                color: #ffcc00;
+            }
+
+                footer a:hover {
+                    text-decoration: underline;
+                }
+
+        .dashboard-header {
+            margin-bottom: 30px;
+            font-size: 2em;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: none;
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            background-color: #007BFF;
+            color: white;
+            font-size: 1.1em;
+        }
+
+        .card-body {
+            background-color: white;
+        }
+
+        .icon-box {
+            font-size: 3em;
+            color: #007BFF;
+        }
+
+        .row {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-light">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">OlympicGames.Web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Olympic Games</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-controller="Athlete" asp-action="Index">Athlete</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-area="" asp-controller="Area" asp-action="Index">Area</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Country" asp-action="Index">Country</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Game" asp-action="Index">Game</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Year" asp-action="Index">Year</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
+
+    <div class="container">
+        <main role="main">
+            <div class="dashboard-header">
+                <h1>Welcome to the Olympic Games</h1>
+            </div>
+        </main>
+    </div>
     <div class="container">
         <main role="main" class="pb-3">
-            @RenderBody()
+            @RenderBody()  <!-- This is where content from the view will be injected -->
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer>
         <div class="container">
-            &copy; 2024 - OlympicGames.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            Olympic Games for Classmates. It is not free. Please, pass from essential my friend 😁
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -1,0 +1,77 @@
+﻿@model OlympicGames.Infrastructure.ViewModels.CountryViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Country Details</h1>
+
+<h4>Country Information</h4>
+<hr />
+<div>
+    <dl class="row">
+        <!-- ID Field -->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <!-- Name Field -->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+
+<div class="row">
+    <div class="col-lg-4 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="icon-box">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                Athlete Overview
+            </div>
+            <div class="card-body">
+                <p>Quick overview of athlete statistics and performance.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="icon-box">
+                    <i class="bi bi-geo-alt"></i>
+                </div>
+                Area Coverage
+            </div>
+            <div class="card-body">
+                <p>Detailed data about the areas participating in the Olympic Games.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="icon-box">
+                    <i class="bi bi-flag"></i>
+                </div>
+                Country Statistics
+            </div>
+            <div class="card-body">
+                <p>Information about the countries and their Olympic performances.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Action Links -->
+<div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

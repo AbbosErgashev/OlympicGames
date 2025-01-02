@@ -1,0 +1,152 @@
+﻿@using OlympicGames.Infrastructure.Settings
+@model OlympicGames.Infrastructure.ViewModels.AthleteViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1 class="page-header">Edit Athlete</h1>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <h4 class="text-muted">Edit Athlete Information</h4>
+        <hr />
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- First Name -->
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+            <!-- Last Name -->
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <!-- Date of Birth -->
+            <div class="form-group">
+                <label asp-for="DOB" class="control-label"></label>
+                <input asp-for="DOB" class="form-control" type="date" />
+                <span asp-validation-for="DOB" class="text-danger"></span>
+            </div>
+
+            <!-- Country -->
+            <div class="form-group">
+                <label asp-for="CountryId" class="control-label">Country</label>
+                <select asp-for="CountryId" class="form-control" asp-items="ViewBag.Country">
+                    <option value="">-- Select Country --</option>
+                </select>
+                <span asp-validation-for="CountryId" class="text-danger"></span>
+            </div>
+
+            <!-- Game -->
+            <div class="form-group">
+                <label asp-for="GameId" class="control-label">Game</label>
+                <select asp-for="GameId" class="form-control" asp-items="ViewBag.Game">
+                    <option value="">-- Select Game --</option>
+                </select>
+                <span asp-validation-for="GameId" class="text-danger"></span>
+            </div>
+
+            <!-- Profile Image -->
+            @* <div class="form-group">
+                <label asp-for="ProfileImage" class="form-label mt-4 fw-bold"></label>
+                <input type="file" class="form-control" asp-for="ProfileImage"
+                       data-rule-extension="@FileSettings.AllowedExtensions.Replace(".", string.Empty)"
+                       data-msg-extension="Not allowed extension"
+                       data-rule-filesize="@FileSettings.MaxFileSizeInBytes"
+                       data-msg-filesize="Maximum allowed size is @FileSettings.MaxFileSizeInMB MB" />
+                <small class="form-text text-muted">Only @FileSettings.AllowedExtensions files are allowed with max size @(FileSettings.MaxFileSizeInMB)MB.</small>
+                <span asp-validation-for="ProfileImage" class="text-danger d-block"></span>
+            </div> *@
+
+            <div class="form-group">
+                <label asp-for="ProfileImage" class="form-label mt-4 fw-bold"></label>
+                <input type="file" class="form-control" asp-for="ProfileImage"
+                       data-rule-extension="@FileSettings.AllowedExtensions.Replace(".", string.Empty)"
+                       data-msg-extension="Not allowed extension"
+                       data-rule-filesize="@FileSettings.MaxFileSizeInBytes"
+                       data-msg-filesize="Maximum allowed size is @FileSettings.MaxFileSizeInMB MB" />
+
+                <small class="form-text text-muted">Only @FileSettings.AllowedExtensions files are allowed with max size @(FileSettings.MaxFileSizeInMB)MB.</small>
+                <span asp-validation-for="ProfileImage" class="text-danger d-block"></span>
+            </div>
+            <!-- Display Current Profile Image -->
+            <div class="form-group">
+                <label class="fw-bold">Current Profile Image:</label>
+                <div class="mb-3">
+                    @if (string.IsNullOrEmpty(Model.ProfileImage))
+                    {
+                        <img style="max-width:200px; height:auto;" src="/assets/images/NoImage.png" alt="No Image Available" />
+                    }
+                    else
+                    {
+                        <img style="max-width:200px; height:auto;" src="/assets/images/@Model.ProfileImage" alt="Profile Image" />
+                    }
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-link">Back to List</a>
+</div>
+
+<div class="row">
+    <div class="col-lg-4 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="icon-box">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                Athlete Overview
+            </div>
+            <div class="card-body">
+                <p>Quick overview of athlete statistics and performance.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="icon-box">
+                    <i class="bi bi-geo-alt"></i>
+                </div>
+                Area Coverage
+            </div>
+            <div class="card-body">
+                <p>Detailed data about the areas participating in the Olympic Games.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <div class="icon-box">
+                    <i class="bi bi-flag"></i>
+                </div>
+                Country Statistics
+            </div>
+            <div class="card-body">
+                <p>Information about the countries and their Olympic performances.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
