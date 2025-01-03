@@ -6,6 +6,6 @@ namespace OlympicGames.Infrastructure.Settings
     {
         [AllowedExtensions(FileSettings.AllowedExtensions)]
         [MaxFileSize(FileSettings.MaxFileSizeInBytes)]
-        public IFormFile Cover { get; set; } = default!;
+        public IFormFile ProfileImage { get; set; } = default!;
     }
 }

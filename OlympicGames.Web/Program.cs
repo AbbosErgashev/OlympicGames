@@ -16,7 +16,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 builder.Services.AddTransient<IAreaRepository, AreaRepository>();
-builder.Services.AddScoped<IAthleteRepository, AthleteRepository>();
+builder.Services.AddTransient<IAthleteRepository, AthleteRepository>();
 builder.Services.AddTransient<ICompetitionRepository, CompetitionRepository>();
 builder.Services.AddTransient<ICountryRepository, CountryRepostiroy>();
 builder.Services.AddTransient<IGameRepository, GameRepository>();

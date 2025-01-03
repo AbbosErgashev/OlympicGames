@@ -1,4 +1,7 @@
-﻿using OlympicGames.Infrastructure.IRepositories;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using OlympicGames.Infrastructure.IRepositories;
 using OlympicGames.Infrastructure.IRepositories.Base;
 using OlympicGames.Infrastructure.ViewModels;
 using OlympicGames.Model.Entity;
@@ -8,6 +11,8 @@ namespace OlympicGames.Infrastructure.Repositories
     public class AthleteRepository : IAthleteRepository
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly string _imagesPath;
+
 
         public AthleteRepository(IUnitOfWork unitOfWork)
         {

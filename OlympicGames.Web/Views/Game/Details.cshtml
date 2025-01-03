@@ -8,19 +8,19 @@
 
 <div class="row justify-content-center">
     <div class="col-md-6">
-        <h4 class="text-center">Game Information</h4>
-        <hr />
+        <h4 class="text-center text-secondary">Game Information</h4>
+        <hr class="mb-4" />
 
         <!-- Game Details Table -->
         <dl class="row">
-            <dt class="col-sm-3">
+            <dt class="col-sm-3 text-muted">
                 @Html.DisplayNameFor(model => model.Id)
             </dt>
             <dd class="col-sm-9">
                 @Html.DisplayFor(model => model.Id)
             </dd>
 
-            <dt class="col-sm-3">
+            <dt class="col-sm-3 text-muted">
                 @Html.DisplayNameFor(model => model.Name)
             </dt>
             <dd class="col-sm-9">
@@ -30,12 +30,12 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row g-4">
     <div class="col-lg-4 col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <div class="icon-box">
-                    <i class="bi bi-person-circle"></i>
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-header bg-primary text-white text-center">
+                <div class="icon-box mb-2">
+                    <i class="bi bi-person-circle fs-2"></i>
                 </div>
                 Athlete Overview
             </div>
@@ -45,10 +45,10 @@
         </div>
     </div>
     <div class="col-lg-4 col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <div class="icon-box">
-                    <i class="bi bi-geo-alt"></i>
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-header bg-success text-white text-center">
+                <div class="icon-box mb-2">
+                    <i class="bi bi-geo-alt fs-2"></i>
                 </div>
                 Area Coverage
             </div>
@@ -58,10 +58,10 @@
         </div>
     </div>
     <div class="col-lg-4 col-md-6">
-        <div class="card">
-            <div class="card-header">
-                <div class="icon-box">
-                    <i class="bi bi-flag"></i>
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-header bg-warning text-dark text-center">
+                <div class="icon-box mb-2">
+                    <i class="bi bi-flag fs-2"></i>
                 </div>
                 Country Statistics
             </div>
@@ -72,7 +72,24 @@
     </div>
 </div>
 
-<!-- Action Links -->
-<div class="text-center mt-4">
-    <a asp-action="Index" class="btn btn-secondary btn-sm">Back to List</a>
+<div class="d-flex justify-content-between align-items-center p-3 border rounded shadow-sm mt-4" style="background-color: #f9f9f9;">
+    <div>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-primary btn-sm px-3" })
+    </div>
+    <div>
+        <a asp-action="Index" class="btn btn-secondary btn-sm px-3">Back to List</a>
+    </div>
 </div>
+
+<style>
+    .icon-box {
+        display: inline-block;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .fs-2 {
+        font-size: 1.5rem;
+    }
+</style>

@@ -54,17 +54,6 @@
             </div>
 
             <!-- Profile Image -->
-            @* <div class="form-group">
-                <label asp-for="ProfileImage" class="form-label mt-4 fw-bold"></label>
-                <input type="file" class="form-control" asp-for="ProfileImage"
-                       data-rule-extension="@FileSettings.AllowedExtensions.Replace(".", string.Empty)"
-                       data-msg-extension="Not allowed extension"
-                       data-rule-filesize="@FileSettings.MaxFileSizeInBytes"
-                       data-msg-filesize="Maximum allowed size is @FileSettings.MaxFileSizeInMB MB" />
-                <small class="form-text text-muted">Only @FileSettings.AllowedExtensions files are allowed with max size @(FileSettings.MaxFileSizeInMB)MB.</small>
-                <span asp-validation-for="ProfileImage" class="text-danger d-block"></span>
-            </div> *@
-
             <div class="form-group">
                 <label asp-for="ProfileImage" class="form-label mt-4 fw-bold"></label>
                 <input type="file" class="form-control" asp-for="ProfileImage"
@@ -72,10 +61,21 @@
                        data-msg-extension="Not allowed extension"
                        data-rule-filesize="@FileSettings.MaxFileSizeInBytes"
                        data-msg-filesize="Maximum allowed size is @FileSettings.MaxFileSizeInMB MB" />
-
                 <small class="form-text text-muted">Only @FileSettings.AllowedExtensions files are allowed with max size @(FileSettings.MaxFileSizeInMB)MB.</small>
                 <span asp-validation-for="ProfileImage" class="text-danger d-block"></span>
             </div>
+
+           @*  <div class="form-group">
+                <label asp-for="ProfileImage" class="form-label mt-4 fw-bold"></label>
+                <input type="file" class="form-control" asp-for="ProfileImage"
+                       data-rule-extension="@FileSettings.AllowedExtensions.Replace(".", string.Empty)"
+                       data-msg-extension="Not allowed extension"
+                       data-rule-filesize="@FileSettings.MaxFileSizeInBytes"
+                       data-msg-filesize="Maximum allowed size is @FileSettings.MaxFileSizeInMB MB" />
+
+                <small class="form-text text-muted">Only @FileSettings.AllowedExtensions files are allowed with max size @(FileSettings.MaxFileSizeInMB)MB.</small>
+                <span asp-validation-for="ProfileImage" class="text-danger d-block"></span>
+            </div> *@
             <!-- Display Current Profile Image -->
             <div class="form-group">
                 <label class="fw-bold">Current Profile Image:</label>
