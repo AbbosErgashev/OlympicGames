@@ -32,8 +32,6 @@ namespace OlympicGames.Infrastructure.Repositories
             _unitOfWork.GenericRepository<Game>().Delete(delete);
             _unitOfWork.Save();
         }
-
-
         public IEnumerable<GameViewModel> GetAllGameList()
         {
             var getAll = _unitOfWork.GenericRepository<Game>().GetAll().ToList();
@@ -43,11 +41,9 @@ namespace OlympicGames.Infrastructure.Repositories
 
         public GameViewModel GetByIdGame(int id)
         {
-            var getById = _unitOfWork.GenericRepository<Game>().GetById(id);
-            if (getById == null)
-            {
-                throw new Exception($"Game with ID {id} was not found.");
-            }
+            var getById = _unitOfWork.GenericRepository<Game>().GetById(id)
+                ?? throw new Exception($"Game with ID {id} was not found.");
+
             var vmId = new GameViewModel(getById);
             return vmId;
         }
@@ -74,7 +70,6 @@ namespace OlympicGames.Infrastructure.Repositories
             _unitOfWork.Save();
             return Task.CompletedTask;
         }
-
 
         private List<GameViewModel> ConvertModelToViewModelList(List<Game> modelList)
         {

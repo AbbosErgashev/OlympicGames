@@ -32,8 +32,22 @@ namespace OlympicGames.Web.Controllers
         {
             ViewBag.Country = new SelectList(_countryRepository.GetAll(1, 10).Data, "Id", "Name");
             ViewBag.Game = new SelectList(_gameRepository.GetAll(1, 10).Data, "Id", "Name");
-            var viewModel = _athleteRepository.GetByIdAthlete(id);
-            return View(viewModel);
+            var model = _athleteRepository.GetByIdAthlete(id);
+
+            if(model is null) return NotFound();
+            AthleteViewModel vm = new()
+            {
+                Id = id,
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                DOB = model.DOB,
+                CountryId = model.CountryId,
+                GameId = model.GameId,
+                ProfileImage = model.ProfileImage,
+                Country = model.Country,
+                Game = model.Game,
+            };
+            return View(vm);
         }
 
         [HttpPost]
